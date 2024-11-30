@@ -4,136 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מערכת לניהול משימות נסיעה</title>
+    <title>דוח בוקר</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em;
-        }
-        main {
-            padding: 1em;
-        }
-        .form-group {
-            margin-bottom: 15px;
+            direction: rtl;
+            margin: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin: 10px 0 5px;
         }
-        input, select, button {
+        select, input[type="text"], input[type="time"] {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            box-sizing: border-box;
+            padding: 8px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        .actions a {
-            display: inline-block;
+        .button {
+            display: block;
+            width: 100%;
             padding: 10px;
-            background-color: #007BFF;
+            background-color: #28a745;
             color: white;
             text-align: center;
             text-decoration: none;
             border-radius: 5px;
-            flex-grow: 1;
-            margin: 0 5px;
+            margin-top: 15px;
         }
-        .actions a:hover {
-            background-color: #0056b3;
+        .button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>מערכת לניהול משימות נסיעה</h1>
-    </header>
-    <main>
-        <form id="task-form">
-            <div class="form-group">
-                <label for="driver-name">שם נהג:</label>
-                <select id="driver-name" name="driver-name" required>
-                    <option value="חכמת">חכמת</option>
-                    <option value="עלי">עלי</option>
-                    <option value="עלא">עלא</option>
-                    <option value="יואב">יואב</option>
-                    <option value="שאול">שאול</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="client-name">שם לקוח:</label>
-                <input type="text" id="client-name" name="client-name" required>
-            </div>
-            <div class="form-group">
-                <label for="address">כתובת:</label>
-                <input type="text" id="address" name="address" required>
-            </div>
-            <div class="form-group">
-                <label for="contact-person">איש קשר:</label>
-                <input type="text" id="contact-person" name="contact-person">
-            </div>
-            <div class="form-group">
-                <label for="phone">טלפון:</label>
-                <input type="tel" id="phone" name="phone">
-            </div>
-            <div class="form-group">
-                <label for="transport-type">סוג הובלה:</label>
-                <select id="transport-type" name="transport-type" required>
-                    <option value="crane10">הובלת מנוף 10 מטר</option>
-                    <option value="crane15">הובלת מנוף 15 מטר</option>
-                    <option value="truck">הובלת משאית</option>
-                    <option value="crane-work">עבודת מנוף</option>
-                    <option value="equipment">העברת ציוד</option>
-                    <option value="van">טנדר</option>
-                </select>
-            </div>
-            <div class="actions">
-                <a id="navigate" href="#" target="_blank">שתף עם Waze</a>
-                <a id="whatsapp-share" href="#" target="_blank">שתף לווצאפ</a>
-            </div>
-            <button type="submit">שמור משימה</button>
-        </form>
-    </main>
-    <script>
-        document.getElementById('navigate').addEventListener('click', function(e) {
-            const address = document.getElementById('address').value;
-            if (address) {
-                this.href = `https://www.waze.com/ul?ll=&q=${encodeURIComponent(address)}&navigate=yes`;
-            } else {
-                e.preventDefault();
-                alert("יש להזין כתובת לפני ניווט");
-            }
-        });
+    <h1>דוח בוקר - <span id="date"></span></h1>
+    <form id="deliveryForm">
+        <label for="customerName">שם לקוח</label>
+        <input type="text" id="customerName" placeholder="הכנס שם לקוח" required>
 
-        document.getElementById('whatsapp-share').addEventListener('click', function(e) {
-            const driverName = document.getElementById('driver-name').value;
-            const clientName = document.getElementById('client-name').value;
-            const address = document.getElementById('address').value;
-            const transportType = document.getElementById('transport-type').value;
-            const message = `שם נהג: ${driverName}%0Aשם לקוח: ${clientName}%0Aכתובת: ${address}%0Aסוג הובלה: ${transportType}`;
-            this.href = `https://wa.me/972508860896?text=${message}`;
+        <label for="address">כתובת לאספקה</label>
+        <input type="text" id="address" placeholder="הכנס כתובת לאספקה" required>
+
+        <label for="time">שעה</label>
+        <input type="time" id="time" required>
+
+        <label for="transportType">סוג הובלה</label>
+        <select id="transportType" required>
+            <option value="הובלת מנוף 15 מטר">🚛 הובלת מנוף 15 מטר</option>
+            <option value="הובלת מנוף 10 מטר">🚛 הובלת מנוף 10 מטר</option>
+            <option value="הובלת משאית">🚚 הובלת משאית</option>
+            <option value="עבודת מנוף 15 מטר">🏗️ עבודת מנוף 15 מטר</option>
+        </select>
+
+        <a href="#" id="whatsappLink" class="button" target="_blank">שתף בווצאפ</a>
+    </form>
+
+    <script>
+        // Set tomorrow's date in the title
+        const dateElement = document.getElementById("date");
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateElement.textContent = tomorrow.toLocaleDateString('he-IL');
+
+        // Generate WhatsApp link dynamically
+        const form = document.getElementById("deliveryForm");
+        const whatsappLink = document.getElementById("whatsappLink");
+
+        form.addEventListener("input", () => {
+            const name = document.getElementById("customerName").value;
+            const address = document.getElementById("address").value;
+            const time = document.getElementById("time").value;
+            const transport = document.getElementById("transportType").value;
+
+            if (name && address && time && transport) {
+                const message = `דוח בוקר - ${tomorrow.toLocaleDateString('he-IL')}
+
+` +
+                                `👤 שם לקוח: ${name}
+` +
+                                `📍 כתובת לאספקה: ${address}
+` +
+                                `⏰ שעה: ${time}
+` +
+                                `🚚 סוג הובלה: ${transport}`;
+                whatsappLink.href = `https://wa.me/972508860896?text=${encodeURIComponent(message)}`;
+                whatsappLink.textContent = "שתף בווצאפ 📤";
+            } else {
+                whatsappLink.href = "#";
+                whatsappLink.textContent = "מלא את כל השדות";
+            }
         });
     </script>
 </body>
