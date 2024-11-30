@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מערכת לניהול משימות נסיעה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        main {
+            padding: 1em;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        .actions a {
+            display: inline-block;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            flex-grow: 1;
+            margin: 0 5px;
+        }
+        .actions a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>מערכת לניהול משימות נסיעה</h1>
+    </header>
+    <main>
+        <form id="task-form">
+            <div class="form-group">
+                <label for="driver-name">שם נהג:</label>
+                <input type="text" id="driver-name" name="driver-name" required>
+            </div>
+            <div class="form-group">
+                <label for="client-name">שם לקוח:</label>
+                <input type="text" id="client-name" name="client-name" required>
+            </div>
+            <div class="form-group">
+                <label for="address">כתובת:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="contact-person">איש קשר:</label>
+                <input type="text" id="contact-person" name="contact-person">
+            </div>
+            <div class="form-group">
+                <label for="phone">טלפון:</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="transport-type">סוג הובלה:</label>
+                <select id="transport-type" name="transport-type" required>
+                    <option value="crane10">הובלת מנוף 10 מטר</option>
+                    <option value="crane15">הובלת מנוף 15 מטר</option>
+                    <option value="truck">הובלת משאית</option>
+                    <option value="crane-work">עבודת מנוף</option>
+                    <option value="equipment">העברת ציוד</option>
+                    <option value="van">טנדר</option>
+                </select>
+            </div>
+            <div class="actions">
+                <a id="navigate" href="#" target="_blank">שתף עם Waze</a>
+                <a id="whatsapp-share" href="https://wa.me/972508860896" target="_blank">שתף לווצאפ</a>
+            </div>
+            <button type="submit">שמור משימה</button>
+        </form>
+    </main>
+    <script>
+        document.getElementById('navigate').addEventListener('click', function(e) {
+            const address = document.getElementById('address').value;
+            if (address) {
+                this.href = `https://www.waze.com/ul?ll=&q=${encodeURIComponent(address)}&navigate=yes`;
+            } else {
+                e.preventDefault();
+                alert("יש להזין כתובת לפני ניווט");
+            }
+        });
+    </script>
+</body>
+</html>
