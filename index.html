@@ -2,222 +2,230 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>סידור עבודה לנהגים</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סידור עבודה לנהג</title>
     <style>
-        body { font-family: Arial, sans-serif; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1, label, th, td, .btn, select, input {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        label {
+            margin-right: 10px;
+        }
+        .form-row {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        .warehouse-1 {
+            color: purple;
+        }
+        .warehouse-4 {
+            color: green;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .summary {
+            margin-top: 30px;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .summary .warehouse-1 {
+            color: purple;
+        }
+        .summary .warehouse-4 {
+            color: green;
+        }
     </style>
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h1 class="text-2xl font-bold mb-6 text-center">סידור עבודה לנהגים</h1>
-        
-        <form id="driverScheduleForm" class="space-y-4">
-            <!-- נהג -->
-            <div class="grid grid-cols-2 gap-4">
-                <label class="block">
-                    <span class="text-gray-700">נהג:</span>
-                    <select class="form-select mt-1 block w-full" name="driver">
-                        <option value="עלי">עלי</option>
-                        <option value="חכמת">חכמת</option>
-                        <option value="שאול">שאול</option>
-                        <option value="יואב">יואב</option>
-                        <option value="עלאא">עלאא</option>
-                    </select>
-                </label>
-
-                <!-- לקוח -->
-                <div class="block">
-                    <label class="text-gray-700">לקוח:</label>
-                    <input type="text" class="mt-1 block w-full form-input" placeholder="הזן שם לקוח">
-                </div>
-            </div>
-
-            <!-- הזמנה מוכנה -->
-            <div class="grid grid-cols-2 gap-4">
-                <label class="block">
-                    <span class="text-gray-700">הזמנה מוכנה:</span>
-                    <select class="form-select mt-1 block w-full" name="order-ready" required>
-                        <option value="">בחר אפשרות</option>
-                        <option value="כן">כן</option>
-                        <option value="לא">לא</option>
-                    </select>
-                </label>
-
-                <!-- מחסן -->
-                <label class="block">
-                    <span class="text-gray-700">מחסן:</span>
-                    <select class="form-select mt-1 block w-full" name="warehouse">
-                        <option value="מחסן 1">מחסן 1</option>
-                        <option value="מחסן 4">מחסן 4</option>
-                    </select>
-                </label>
-            </div>
-
-            <!-- יציאה ושעה -->
-            <div class="grid grid-cols-2 gap-4">
-                <label class="block">
-                    <span class="text-gray-700">יציאה:</span>
-                    <select class="form-select mt-1 block w-full" name="exit">
-                        <option value="יציאה 1">יציאה 1</option>
-                        <option value="יציאה 2">יציאה 2</option>
-                        <option value="יציאה 3">יציאה 3</option>
-                        <option value="יציאה 4">יציאה 4</option>
-                        <option value="יציאה 5">יציאה 5</option>
-                        <option value="יציאה 6">יציאה 6</option>
-                        <option value="יציאה 7">יציאה 7</option>
-                        <option value="יציאה 8">יציאה 8</option>
-                    </select>
-                </label>
-
-                <label class="block">
-                    <span class="text-gray-700">שעה:</span>
-                    <select class="form-select mt-1 block w-full" name="time" required>
-                        <option value="">בחר שעה</option>
-                        <option value="06:00">06:00</option>
-                        <option value="07:00">07:00</option>
-                        <option value="08:00">08:00</option>
-                        <option value="09:00">09:00</option>
-                        <option value="10:00">10:00</option>
-                        <option value="11:00">11:00</option>
-                        <option value="12:00">12:00</option>
-                        <option value="13:00">13:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="16:00">16:00</option>
-                        <option value="17:00">17:00</option>
-                    </select>
-                </label>
-            </div>
-
-            <!-- סוג הובלה -->
-            <label class="block">
-                <span class="text-gray-700">סוג הובלה:</span>
-                <select class="form-select mt-1 block w-full" name="transportation-type">
-                    <option value="הובלת מנוף">הובלת מנוף</option>
-                    <option value="הובלת מנוף 15">הובלת מנוף 15</option>
-                    <option value="הובלת משאית">הובלת משאית</option>
-                    <option value="טנדר">טנדר</option>
-                    <option value="עבודת מנוף">עבודת מנוף</option>
-                </select>
-            </label>
-
-            <!-- כפתור הוספת יציאה -->
-            <div class="text-center mt-4">
-                <button type="button" onclick="addExit()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    הוסף יציאה
-                </button>
-            </div>
-
-            <!-- טבלת סיכום יציאות -->
-            <div class="mt-6">
-                <h2 class="text-xl font-bold mb-4">סיכום יציאות</h2>
-                <table id="exitSummaryTable" class="w-full border-collapse">
-                    <thead>
-                        <tr class="bg-gray-200">
-                            <th class="border p-2">נהג</th>
-                            <th class="border p-2">לקוח</th>
-                            <th class="border p-2">יציאה</th>
-                            <th class="border p-2">שעה</th>
-                            <th class="border p-2">מחסן</th>
-                            <th class="border p-2">סוג הובלה</th>
-                        </tr>
-                    </thead>
-                    <tbody id="exitSummaryBody">
-                        <!-- Rows will be dynamically added here -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- דוח סיכום ספירה -->
-            <div class="mt-6">
-                <h2 class="text-xl font-bold mb-4">דוח סיכום</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <h3 class="font-semibold">ספירת הזמנות לפי נהגים</h3>
-                        <div id="driverOrderCount"></div>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold">ספירת הזמנות לפי מחסן</h3>
-                        <div id="warehouseOrderCount"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- כפתור שיתוף נתונים -->
-            <div class="text-center mt-6">
-                <button type="button" onclick="shareData()" class="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 text-lg">
-                    שתף נתונים בוואטסאפ
-                </button>
-            </div>
-        </form>
+<body>
+  <p>
+<p>
+  <strong>דוח בוקר<strong>
+ <p>
+    <div>
+        <div class="form-row">
+            <label for="driver">נהג:</label>
+            <select id="driver">
+                <option value="עלי">עלי</option>
+                <option value="חכמת">חכמת</option>
+                <option value="שאול">שאול</option>
+                <option value="יואב">יואב</option>
+                <option value="עלאא">עלאא</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="client">👤לקוח:</label>
+            <input type="text" id="client" placeholder="הכנס שם לקוח">
+        </div>
+        <div class="form-row">
+            <label for="warehouse">📍מחסן:</label>
+            <select id="warehouse">
+                <option value="מחסן 1">מחסן 1</option>
+                <option value="מחסן 4">מחסן 4</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="exit-number">יציאה:</label>
+            <select id="exit-number">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="time">⏰שעה:</label>
+            <select id="time">
+                <option value="06:00">06:00</option>
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="transport-type">סוג הובלה:</label>
+            <select id="transport-type">
+                <option value="הובלת מנוף🚚 ">הובלת מנוף</option>
+                <option value="הובלת מנוף 🚛15">הובלת מנוף 15</option>
+                <option value="הובלת משאית🏗️">הובלת משאית</option>
+                <option value="טנדר">טנדר</option>
+                <option value="עבודת מנוף">עבודת מנוף</option>
+            </select>
+        </div>
+        <button class="btn" onclick="addExit()">הוספת יציאה</button>
     </div>
+    <table id="summary-table">
+        <thead>
+            <tr>
+                <th>נהג</th>
+                <th>לקוח</th>
+                <th>מחסן</th>
+                <th>יציאה</th>
+                <th>שעה</th>
+                <th>סוג הובלה</th>
+                <th>פעולות</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="summary" id="driver-summary"></div>
+    <button class="btn" onclick="shareData()">שיתוף📤 דוח בוקר בווטסאפ</button>
 
     <script>
-        const exits = [];
+        let exits = [];
 
         function addExit() {
-            const form = document.getElementById('driverScheduleForm');
-            const exit = {
-                driver: form.querySelector('select[name="driver"]').value,
-                client: form.querySelector('input[placeholder="הזן שם לקוח"]').value,
-                orderReady: form.querySelector('select[name="order-ready"]').value,
-                warehouse: form.querySelector('select[name="warehouse"]').value,
-                exitNumber: form.querySelector('select[name="exit"]').value,
-                time: form.querySelector('select[name="time"]').value,
-                transportationType: form.querySelector('select[name="transportation-type"]').value
-            };
+            const driver = document.getElementById('driver').value;
+            const client = document.getElementById('client').value;
+            const warehouse = document.getElementById('warehouse').value;
+            const exitNumber = document.getElementById('exit-number').value;
+            const time = document.getElementById('time').value;
+            const transportType = document.getElementById('transport-type').value;
 
-            exits.push(exit);
-            updateExitSummary();
-            updateOrderCounts();
+            const newExit = { driver, client, warehouse, exitNumber, time, transportType };
+            exits.push(newExit);
+            updateTable();
         }
 
-        function updateExitSummary() {
-            const summaryBody = document.getElementById('exitSummaryBody');
-            summaryBody.innerHTML = '';
-            exits.forEach(exit => {
+        function deleteExit(index) {
+            exits.splice(index, 1);
+            updateTable();
+        }
+
+        function updateTable() {
+            const tbody = document.getElementById('summary-table').querySelector('tbody');
+            tbody.innerHTML = '';
+            exits.forEach((exit, index) => {
                 const row = `
-                    <tr class="text-center">
-                        <td class="border p-2">${exit.driver}</td>
-                        <td class="border p-2">${exit.client}</td>
-                        <td class="border p-2">${exit.exitNumber}</td>
-                        <td class="border p-2">${exit.time}</td>
-                        <td class="border p-2">${exit.warehouse}</td>
-                        <td class="border p-2">${exit.transportationType}</td>
+                    <tr class="${exit.warehouse === 'מחסן 1' ? 'warehouse-1' : 'warehouse-4'}">
+                        <td>${exit.driver}</td>
+                        <td>${exit.client}</td>
+                        <td>${exit.warehouse}</td>
+                        <td>${exit.exitNumber}</td>
+                        <td>${exit.time}</td>
+                        <td>${exit.transportType}</td>
+                        <td><button onclick="deleteExit(${index})">מחק</button></td>
                     </tr>
                 `;
-                summaryBody.innerHTML += row;
+                tbody.innerHTML += row;
             });
+            updateSummary();
         }
 
-        function updateOrderCounts() {
-            const driverOrderCount = document.getElementById('driverOrderCount');
-            const warehouseOrderCount = document.getElementById('warehouseOrderCount');
-            
-            const driverCounts = {};
-            const warehouseCounts = {};
+        function updateSummary() {
+            const totalExits = exits.length;
+            const driversWithExits = new Set(exits.map(exit => exit.driver)).size;
+            const warehouse1Exits = exits.filter(exit => exit.warehouse === 'מחסן 1').length;
+            const warehouse4Exits = exits.filter(exit => exit.warehouse === 'מחסן 4').length;
 
-            exits.forEach(exit => {
-                driverCounts[exit.driver] = (driverCounts[exit.driver] || 0) + 1;
-                warehouseCounts[exit.warehouse] = (warehouseCounts[exit.warehouse] || 0) + 1;
-            });
-
-            driverOrderCount.innerHTML = Object.entries(driverCounts)
-                .map(([driver, count]) => ${driver}: ${count}).join('<br>');
-            
-            warehouseOrderCount.innerHTML = Object.entries(warehouseCounts)
-                .map(([warehouse, count]) => ${warehouse}: ${count}).join('<br>');
+            const summaryDiv = document.getElementById('driver-summary');
+            summaryDiv.innerHTML = `
+                <div>סה"כ יציאות: ${totalExits}</div>
+                <div>סה"כ נהגים עם יציאות: ${driversWithExits}</div>
+                <div class="warehouse-1">יציאות ממחסן 1: ${warehouse1Exits}</div>
+                <div class="warehouse-4">יציאות ממחסן 4: ${warehouse4Exits}</div>
+            `;
         }
 
         function shareData() {
-            const waNumber = '972508860896';
-            const message = exits.map(exit => 
-                נהג: ${exit.driver} | לקוח: ${exit.client} | יציאה: ${exit.exitNumber} | שעה: ${exit.time} | סוג הובלה: ${exit.transportationType}
-            ).join('\n');
+            let data = '';
+            const groupedExits = exits.reduce((acc, exit) => {
+                acc[exit.driver] = acc[exit.driver] || [];
+                acc[exit.driver].push(exit);
+                return acc;
+            }, {});
 
-            const whatsappUrl = https://wa.me/${waNumber}?text=${encodeURIComponent(message)};
-            window.open(whatsappUrl, '_blank');
+            Object.entries(groupedExits).forEach(([driver, driverExits]) => {
+                data += `*${driver}*\n`;
+                driverExits.forEach(exit => {
+                    data += `${exit.client} ${exit.warehouse} ${exit.exitNumber} ${exit.time} ${exit.transportType}\n`;
+                });
+            });
+
+            const totalExits = exits.length;
+            data += `סה"כ יציאות: ${totalExits}`;
+
+            const whatsappLink = `https://wa.me/972508860896?text=${encodeURIComponent(data)}`;
+            window.open(whatsappLink, '_blank');
         }
     </script>
 </body>
