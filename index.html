@@ -95,12 +95,12 @@
         <table id="report-table">
             <thead>
                 <tr>
-                    <th>תאריך</th>
-                    <th>נהג</th>
-                    <th>לקוח</th>
-                    <th>מחסן</th>
-                    <th>יציאה</th>
-                    <th>סוג הובלה</th>
+                    <th>📅תאריך</th>
+                    <th>🚗נהג</th>
+                    <th>👤לקוח</th>
+                    <th>🏭מחסן</th>
+                    <th>⏰שעת אספקה</th>
+                    <th>🚚סוג הובלה</th>
                 </tr>
             </thead>
             <tbody>
@@ -170,12 +170,12 @@
 
             for (let i = 0; i < rows.length; i++) {
                 const cells = rows[i].cells;
-                message += `📅 תאריך: ${cells[0].innerText}\n`;
-                message += `🚗 נהג: ${cells[1].innerText}\n`;
-                message += `👤 לקוח: ${cells[2].innerText}\n`;
-                message += `🏭 מחסן: ${cells[3].innerText}\n`;
-                message += `🚪 יציאה: ${cells[4].innerText}\n`;
-                message += `🚚 סוג הובלה: ${cells[5].innerText}\n\n`;
+                message += `📅 *תאריך*: ${cells[0].innerText}\n`;
+                message += `🚗 *נהג*: ${cells[1].innerText}\n`;
+                message += `👤 *לקוח*: ${cells[2].innerText}\n`;
+                message += `🏭 *מחסן*: ${cells[3].innerText}\n`;
+                message += `🚪 *יציאה*: ${cells[4].innerText}\n`;
+                message += `🚚 *סוג הובלה*: ${cells[5].innerText}\n\n`;
                 exitCount++;
                 if (cells[3].innerText === '1') {
                     warehouse1Count++;
@@ -184,9 +184,9 @@
                 }
             }
 
-            message += `📊 ספירת יציאות: ${exitCount}\n`;
-            message += `🏭 ספירה לפי מחסן 1: ${warehouse1Count}\n`;
-            message += `🏭 ספירה לפי מחסן 4: ${warehouse4Count}\n`;
+            message += `📊 *ספירת יציאות*: ${exitCount}\n`;
+            message += `🏭 *ספירה לפי *מחסן 1: ${warehouse1Count}\n`;
+            message += `🏭 *ספירה לפי *מחסן 4: ${warehouse4Count}\n`;
 
             const phoneNumber = '972508860896';
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`);
