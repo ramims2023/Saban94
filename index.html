@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>דו"ח בוקר</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .header { text-align: right; }
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .header { margin-bottom: 20px; }
         .form-section, .report-section, .count-section { 
-            margin: 20px; 
+            margin: 20px auto; 
             padding: 20px; 
             border: 1px solid #ccc; 
             border-radius: 8px; 
             background-color: #f9f9f9; 
+            width: 80%; /* הגדרת רוחב קבוע */
         }
         .highlight { background-color: #e0ffe0; color: #ff0000; }
-        .button { background-color: green; color: white; padding: 10px; border: none; cursor: pointer; border-radius: 5px; }
+        .button { background-color: green; color: white; padding: 15px; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: right; }
         th { background-color: #d0e0ff; }
@@ -116,7 +117,7 @@
     <div class="count-section highlight">
         <h2>ספירת יציאות</h2>
         <p>כמות נהגים פעילים: <span id="active-drivers-count">0</span></p>
-        <button class="button" onclick="shareWhatsApp()">📞 שתף לווצאפ</button>
+        <button class="button" style="font-size: 20px; padding: 20px;" onclick="shareWhatsApp()">📞 שתף לווצאפ</button>
     </div>
 
     <script>
